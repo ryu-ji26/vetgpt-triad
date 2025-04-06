@@ -2,16 +2,16 @@ import streamlit as st
 import openai
 import time
 
-# 頁面設定
+# 頁面設定（這行必須放在最上面）
 st.set_page_config(page_title="VetGPT 三角系統", page_icon="🐾")
 
 # 顯示 SDK 版本
 st.write("OpenAI SDK version:", openai.__version__)
 
-# 設定 API 金鑰（OpenAI SDK v1.1.0 寫法）
+# 設定 API 金鑰（v1.1.0 用法）
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-# 載入角色提示詞
+# 載入提示詞
 def load_prompt(file_name):
     try:
         with open(file_name, "r", encoding="utf-8") as file:
@@ -27,7 +27,7 @@ prompt_a = load_prompt("prompt_a.txt")
 # 呼叫 OpenAI API 回應
 def get_response(prompt, user_input):
     try:
-        response = openai.chat.completion.create(
+        response = openai.chat.completions.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": prompt},
@@ -40,7 +40,7 @@ def get_response(prompt, user_input):
         st.error(f"發生錯誤：{e}")
         return ""
 
-# Streamlit 畫面
+# Streamlit 主介面
 st.title("VetGPT 三角系統")
 st.write("請輸入你的問題，三位角色將共同回應。")
 
