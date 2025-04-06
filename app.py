@@ -1,7 +1,6 @@
 import openai
 import streamlit as st
 import time
-import OpenAI
 st.write("OpenAI SDK version:", openai.__version__)
 
 # 初始化 OpenAI 用戶端
