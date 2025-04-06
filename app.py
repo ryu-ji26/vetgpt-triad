@@ -1,23 +1,9 @@
 import streamlit as st
-import openai
+from openai import OpenAI
 import time
 
-# ✅ 初始化
-import openai
-openai.api_key = st.secrets["OPENAI_API_KEY"]
-def get_response(prompt, user_input):
-    try:
-        res = client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "system", "content": prompt},
-                {"role": "user", "content": user_input}
-            ],
-            temperature=0.7
-        )
-        return res.choices[0].message.content
-    except Exception as e:
-        return f"[錯誤] {e}"
+# ✅ 初始化 OpenAI 客戶端
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # ✅ 載入提示詞
 def load_prompt(file_name):
@@ -28,10 +14,10 @@ prompt_v = load_prompt("prompt_v.txt")
 prompt_1 = load_prompt("prompt_1.txt")
 prompt_a = load_prompt("prompt_a.txt")
 
-# ✅ 呼叫 AI 回應
+# ✅ 呼叫 AI 回應（新版 API 寫法）
 def get_response(prompt, user_input):
     try:
-        res = openai.ChatCompletion.create(
+        res = client.chat.completions.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": prompt},
@@ -95,13 +81,13 @@ if st.session_state.history:
     for i, record in enumerate(reversed(st.session_state.history)):
         with st.expander(f"第 {len(st.session_state.history) - i} 筆紀錄 - {record['time']}"):
             st.markdown(f"📝 **觀察輸入：**")
-    st.markdown(f"📝 **觀察輸入：**")
-    st.markdown(f"{record['input']}")
-    st.markdown(f"🟡 **小V 建議：**")
-    st.markdown(f"{record['v']}")
-    st.markdown(f"🔵 **小一 補充：**")
-    st.markdown(f"{record['one']}")
-    st.markdown(f"🟢 **阿寶 總結：**")
-    st.markdown(f"{record['a']}")
+            st.markdown(f"{record['input']}")
 
+            st.markdown(f"🟡 **小V 建議：**")
+            st.markdown(f"{record['v']}")
 
+            st.markdown(f"🔵 **小一 補充：**")
+            st.markdown(f"{record['one']}")
+
+            st.markdown(f"🟢 **阿寶 總結：**")
+            st.markdown(f"{record['a']}")
