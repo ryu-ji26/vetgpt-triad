@@ -27,7 +27,7 @@ prompt_a = load_prompt("prompt_a.txt")
 # 呼叫 OpenAI API 回應
 def get_response(prompt, user_input):
     try:
-        response = openaiChatCompletion.create(
+        response = openai.ChatCompletion.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": prompt},
