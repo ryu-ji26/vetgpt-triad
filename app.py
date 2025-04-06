@@ -1,3 +1,4 @@
+st.set_page_config(page_title="VetGPT 三角系統", page_icon="🩺")
 import openai
 import streamlit as st
 import time
