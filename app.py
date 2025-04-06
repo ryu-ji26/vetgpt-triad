@@ -1,13 +1,13 @@
 import streamlit as st
-import openai
+from openai import OpenAI
 import time
 import os
 
-# 初始化OpenAI API
-if 'OPENAI_API_KEY' in st.secrets:
-    openai.api_key = st.secrets['OPENAI_API_KEY']
+# 初始化 OpenAI client
+if "OPENAI_API_KEY" in st.secrets:
+    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 else:
-    st.error("請在 .streamlit/secrets.toml 文件中設置您的 OpenAI API Key")
+    st.error("請在 .streamlit/secrets.toml 中設置 OPENAI_API_KEY")
     st.stop()
 
 # 載入提示詞
@@ -27,7 +27,7 @@ prompt_a = load_prompt("prompt_a.txt")
 # 使用OpenAI API獲取回應
 def get_ai_response(prompt, user_input, model="gpt-4o", temperature=0.7):
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model=model,
             messages=[
                 {"role": "system", "content": prompt},
