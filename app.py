@@ -80,7 +80,7 @@ if st.session_state.history:
     st.subheader("📜 歷史分析紀錄")
     for i, record in enumerate(reversed(st.session_state.history)):
         with st.expander(f"第 {len(st.session_state.history) - i} 筆紀錄 - {record['time']}"):
-            st.markdown(f"📝 **觀察輸入：**
+            st.markdown(f"📝 **觀察輸入：**)
 {record['input']}")
             st.markdown(f"🟡 **小V 建議：**
 {record['v']}")
