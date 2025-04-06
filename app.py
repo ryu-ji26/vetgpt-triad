@@ -1,3 +1,5 @@
+import openai
+st.write("OpenAI SDK version:", openai.__version__)
 import streamlit as st
 import time
 from openai import OpenAI
