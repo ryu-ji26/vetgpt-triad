@@ -1,11 +1,11 @@
 import openai
 import streamlit as st
 import time
-from openai import OpenAI
+import OpenAI
 st.write("OpenAI SDK version:", openai.__version__)
 
 # 初始化 OpenAI 用戶端
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+OpenAI.api_key=st.secrets["OPENAI_API_KEY"])
 
 # 載入提示詞
 def load_prompt(file_name):
@@ -23,7 +23,7 @@ prompt_a = load_prompt("prompt_a.txt")
 # 呼叫 OpenAI 回應
 def get_response(prompt, user_input):
     try:
-        response = client.chat.completions.create(
+        response = openai.chatcompletions.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": prompt},
