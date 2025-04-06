@@ -27,7 +27,7 @@ prompt_a = load_prompt("prompt_a.txt")
 # 呼叫 OpenAI API 獲取回應
 def get_response(prompt, user_input):
     try:
-        response = openai.chat.completion.create(
+        response = openai.chat.completions.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": prompt},
@@ -35,7 +35,7 @@ def get_response(prompt, user_input):
             ],
             temperature=0.7
         )
-        return response.choices[0].message["content"]
+        return response.choices[0].message.content
     except Exception as e:
         st.error(f"發生錯誤：{e}")
         return ""
