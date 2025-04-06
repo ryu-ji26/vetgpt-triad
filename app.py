@@ -3,7 +3,23 @@ import openai
 import time
 
 # ✅ 初始化
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+from openai import OpenAI
+
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+
+def get_response(prompt, user_input):
+    try:
+        res = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": user_input}
+            ],
+            temperature=0.7
+        )
+        return res.choices[0].message.content
+    except Exception as e:
+        return f"[錯誤] {e}"
 
 # ✅ 載入提示詞
 def load_prompt(file_name):
