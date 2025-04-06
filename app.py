@@ -1,17 +1,16 @@
 import streamlit as st
 import openai
-import time
 
-# 頁面設定（這行必須放在最上面）
+# 頁面設定
 st.set_page_config(page_title="VetGPT 三角系統", page_icon="🐾")
 
-# 顯示 SDK 版本
-st.write("OpenAI SDK version:", openai.__version__)
+# 顯示 OpenAI SDK 版本
+st.write("OpenAI SDK 版本:", openai.__version__)
 
-# 設定 API 金鑰（v1.1.0 用法）
+# 設定 API 金鑰
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-# 載入提示詞
+# 載入提示詞函數
 def load_prompt(file_name):
     try:
         with open(file_name, "r", encoding="utf-8") as file:
@@ -20,14 +19,15 @@ def load_prompt(file_name):
         st.error(f"無法找到提示詞檔案：{file_name}")
         return ""
 
+# 載入三個角色的提示詞
 prompt_v = load_prompt("prompt_v.txt")
 prompt_1 = load_prompt("prompt_1.txt")
 prompt_a = load_prompt("prompt_a.txt")
 
-# 呼叫 OpenAI API 回應
+# 呼叫 OpenAI API 獲取回應
 def get_response(prompt, user_input):
     try:
-        response = openai.chat.completions.create(
+        response = openai.ChatCompletion.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": prompt},
@@ -35,7 +35,7 @@ def get_response(prompt, user_input):
             ],
             temperature=0.7
         )
-        return response.choices[0].message.content
+        return response.choices[0].message["content"]
     except Exception as e:
         st.error(f"發生錯誤：{e}")
         return ""
