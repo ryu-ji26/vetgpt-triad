@@ -5,7 +5,7 @@ import OpenAI
 st.write("OpenAI SDK version:", openai.__version__)
 
 # 初始化 OpenAI 用戶端
-OpenAI.api_key=st.secrets["OPENAI_API_KEY"]
+Openai.api_key=st.secrets["OPENAI_API_KEY"]
 
 # 載入提示詞
 def load_prompt(file_name):
