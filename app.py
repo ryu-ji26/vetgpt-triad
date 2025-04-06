@@ -1,8 +1,8 @@
 import openai
-st.write("OpenAI SDK version:", openai.__version__)
 import streamlit as st
 import time
 from openai import OpenAI
+st.write("OpenAI SDK version:", openai.__version__)
 
 # 初始化 OpenAI 用戶端
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
