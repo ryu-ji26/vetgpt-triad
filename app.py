@@ -81,10 +81,16 @@ if st.session_state.history:
     for i, record in enumerate(reversed(st.session_state.history)):
         with st.expander(f"第 {len(st.session_state.history) - i} 筆紀錄 - {record['time']}"):
             st.markdown(f"📝 **觀察輸入：**")
-st.markdown(f"{record['input']}")
-            st.markdown(f"🟡 **小V 建議：**
-{record['v']}")
-            st.markdown(f"🔵 **小一 補充：**
-{record['one']}")
-            st.markdown(f"🟢 **阿寶 總結：**
-{record['a']}")
+    st.markdown(f"📝 **觀察輸入：**")
+    st.markdown(f"{record['input']}")
+
+    st.markdown(f"🟡 **小V 建議：**")
+    st.markdown(f"{record['v']}")
+
+    st.markdown(f"🔵 **小一 補充：**")
+    st.markdown(f"{record['one']}")
+
+    st.markdown(f"🟢 **阿寶 總結：**")
+    st.markdown(f"{record['a']}")
+
+
