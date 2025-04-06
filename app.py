@@ -28,7 +28,7 @@ def get_response(prompt, user_input):
             messages=[
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": user_input}
-            ］,       
+            ],       
             temperature=0.7
         )
         return response.choices[0].message.content
