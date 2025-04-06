@@ -1,8 +1,8 @@
-st.set_page_config(page_title="VetGPT 三角系統", page_icon="🩺")
 import openai
 import streamlit as st
 import time
 
+st.set_page_config(page_title="VetGPT 三角系統", page_icon="🩺")
 # 顯示 SDK 版本
 st.write("OpenAI SDK version:", openai.__version__)
 
