@@ -39,8 +39,6 @@ def get_response(prompt, user_input):
         return ""
 
 # Streamlit 畫面設定
-st.set_page_config(page_title="VetGPT 三角系統", page_icon="🐾")
-
 st.title("VetGPT 三角系統")
 st.markdown("請輸入你的問題，並選擇角色（V / 一 / A）進行對話")
 
