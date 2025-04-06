@@ -14,18 +14,17 @@ prompt_v = load_prompt("prompt_v.txt")
 prompt_1 = load_prompt("prompt_1.txt")
 prompt_a = load_prompt("prompt_a.txt")
 
-# ✅ 呼叫 AI 回應（新版 API 寫法）
+# ✅ 呼叫 AI 回應（新版 openai 套件用法）
 def get_response(prompt, user_input):
     try:
-        res = client.chat.completions.create(
-            model="gpt-4o",
+        response = client.chat.completions.create(
+            model="gpt-4",
             messages=[
                 {"role": "system", "content": prompt},
                 {"role": "user", "content": user_input}
-            ],
-            temperature=0.7
+            ]
         )
-        return res.choices[0].message.content
+        return response.choices[0].message.content
     except Exception as e:
         return f"[錯誤] {e}"
 
