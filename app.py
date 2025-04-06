@@ -3,10 +3,8 @@ import openai
 import time
 
 # ✅ 初始化
-from openai import OpenAI
-
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-
+import openai
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 def get_response(prompt, user_input):
     try:
         res = client.chat.completions.create(
@@ -99,13 +97,10 @@ if st.session_state.history:
             st.markdown(f"📝 **觀察輸入：**")
     st.markdown(f"📝 **觀察輸入：**")
     st.markdown(f"{record['input']}")
-
     st.markdown(f"🟡 **小V 建議：**")
     st.markdown(f"{record['v']}")
-
     st.markdown(f"🔵 **小一 補充：**")
     st.markdown(f"{record['one']}")
-
     st.markdown(f"🟢 **阿寶 總結：**")
     st.markdown(f"{record['a']}")
 
